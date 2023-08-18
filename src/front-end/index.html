@@ -1,17 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <h3>TO-DO-APP</h3>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-APP</title>
+    <style>
+        /* Center align the content */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column; /* Added flex direction */
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: rgb(93, 196, 211);
+            background-size: cover;
+        }
+
+        /* Style the buttons and align them */
+        .login {
+            display: flex;
+            flex-direction: column; /* Added flex direction */
+            gap: 20px;
+        }
+
+        .create-user {
+            display: flex;
+            flex-direction: column; /* Added flex direction */
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="container">
-        <h2>TO-DO-APP</h2>
-        <form action="/submit" method="post">
-            <input class="form-input" type="text" name="Task" placeholder="Enter a string" required><br>
-            <input class="form-input" type="date" name="Date" placeholder="DD-MM-YYYY" required><br>
-            <button class="submit-button" type="Add Task">Submit</button>
+
+    <div class="login">
+        <form action="/validate" method="post">
+            <h4>Enter User Name : </h4>
+            <input class="form-input-user" type="text" name="UserName" placeholder="Enter a string" required>
+            <br>
+            <h4>Enter Password : </h4>
+            <input class="form-input-password" type="password" name="Password" placeholder="8 digit password" required>
+            <br><br>
+            <button class="button-submit" type="submit">Submit</button><br><br>
         </form>
     </div>
+    <div class="create-user">
+        <form action="/usercreate" method="post">
+            <button class="create-user-button" type="submit">New User?</button>
+        </form>
+    </div>
+
 </body>
 
 </html>

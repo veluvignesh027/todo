@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* Center align the content */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            background-color:cadetblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>TO-DO-APP</h2>
+        <form action="/submit" method="post">
+            <h4>Enter Task : </h4>
+            <input class="form-input" type="text" name="Task" placeholder="Enter a string" required>
+            <br>
+            <h4>Give Date : </h4>
+            <input class="form-input" type="date" name="Date" placeholder="DD-MM-YYYY" required>
+            <br><br>
+            <button class="submit-button" type="submit" onclick="showMessage()">Submit</button><br>
+        </form>
+        <p id="message" style="display: none;">Created!</p>
+    </div>
+    
+    <script>
+        function showMessage() {
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+        }
+    </script>
+</body>
