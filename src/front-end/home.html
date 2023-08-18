@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO-DO-APP</title>
+    <style>
+        /* Center align the content */
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: rgb(168, 186, 95);
+            background-size: cover;
+        }
+
+        /* Style the buttons and align them */
+        .tabs {
+            display: flex;
+            gap: 20px;
+        }
+
+        .tab-form {
+            display: inline;
+            margin: 0;
+        }
+
+        .tab-button {
+            background-color: #cd452a;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tabs">
+        <form class="tab-form" action="/tasks/create" method="post">
+            <button class="tab-button">Create New Task</button>
+        </form>
+        <form class="tab-form" action="/view" method="post">
+            <button class="tab-button">View All Tasks</button>
+        </form>
+        <form class="tab-form" action="/delete" method="get">
+            <button class="tab-button">Delete a Task</button>
+        </form>
+    </div>
+</body>
+
+</html>
