@@ -9,20 +9,17 @@ ________________________________________________________________________________
 
 INTRODUCTION:
        Streamline your daily tasks, your goals, with its todo's seamless user experience. 
+__________________________________________________________________________________________________________
 
 Installation instructions:
        1) Install GO:
               Download and run the Go installer for Windows from the official website: https://golang.org/dl/.
-
        2) Create a directory:
               mkdir <dirname>
-
        3) Clone todo
               git clone 
-
        4) Run the program
               go run main.go (todo/src/main.go)
-
        5) Ping http://localhost:9000/ to access the web server.
-
+______________________________________________________________________________________________________________
 Cheers!
