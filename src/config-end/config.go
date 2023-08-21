@@ -35,18 +35,15 @@ func SetConfigs() {
 
 	if !checkFile(CurrentConfig.ContentStore) {
 		log.Println("Error config store.Exiting()")
-		os.Exit(-1)
 	}
 	if !checkFile(CurrentConfig.ConfigPath) {
 		log.Println("Error config config path.Exiting()")
-		os.Exit(-1)
 	}
 	if !checkFile(CurrentConfig.ImagesPath) {
 		log.Println("Error finding config images path...")
 	}
 	if !checkFile(CurrentConfig.FrontEndPath) {
 		log.Println("Error config front end .Exiting()")
-		os.Exit(-1)
 	}
 }
 func checkFile(str string) bool {
