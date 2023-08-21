@@ -6,28 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TO-DO-APP</title>
     <style>
-        /* Center align the content */
-        body,
-        html {
-            height: 100%;
+        body {
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
             font-family: Arial, sans-serif;
-            background-color: rgb(168, 186, 95);
+            background-image: url(https://picsum.photos/1920/1080);
             background-size: cover;
         }
 
-        /* Style the buttons and align them */
+        .container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 800px;
+        }
+
+        .section {
+            background: rgba(81, 81, 76, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            width: 350px;
+        }
+
         .tabs {
             display: flex;
+            flex-direction: column;
             gap: 20px;
+            align-items: center;
         }
 
         .tab-form {
-            display: inline;
             margin: 0;
         }
 
@@ -41,22 +53,66 @@
             display: inline-block;
             font-size: 16px;
             border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background-color: #ad3621;
+        }
+
+        .task-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .task-form input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .view-tasks {
+            margin-top: 20px;
+        }
+
+        .task-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .task-list li {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 
 <body>
-
-    <div class="tabs">
-        <form class="tab-form" action="/tasks/create" method="post">
-            <button class="tab-button">Create New Task</button>
-        </form>
-        <form class="tab-form" action="/view" method="post">
-            <button class="tab-button">View All Tasks</button>
-        </form>
-        <form class="tab-form" action="/delete" method="get">
-            <button class="tab-button">Delete a Task</button>
-        </form>
+    <div class="container">
+        <div class="section">
+            <h2>Create New To-DO</h2>
+            <form class="tab-form" action="/tasks/createtask" method="post">
+                <div class="task-form">
+                    <input type="text" name="task" placeholder="Task" required>
+                    <input type="date" name="date" required>
+                    <input type="time" name="time" required>
+                </div>
+                <br>
+                <button class="tab-button">Create Task</button>
+            </form>
+        </div>
+        <div class="section">
+            <h2>All TO-Do's</h2>
+            <div class="view-tasks">
+                <ul class="task-list">
+                    <li>Task 1 - Date: 2023-08-22 Time: 14:00</li>
+                    <li>Task 2 - Date: 2023-08-23 Time: 10:30</li>
+                    <!-- Add more tasks here -->
+                </ul>
+            </div>
+        </div>
     </div>
 </body>
 
