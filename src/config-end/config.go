@@ -22,13 +22,13 @@ type ConfigStruct struct {
 var CurrentConfig ConfigStruct
 
 func SetConfigs() {
-	CurrentConfig.ContentStore = *flag.String("contentStore", "\\CACHE_BASEDIR\\todo-app\\todo\\content-store\\", "Path to content store")
-	CurrentConfig.FrontEndPath = *flag.String("frontEndPath", "\\CACHE_BASEDIR\\todo-app\\todo\\src\\front-end\\", "Path to front end")
-	CurrentConfig.ImagesPath = *flag.String("imagesPath", "\\CACHE_BASEDIR\\todo-app\\todo\\images\\", "Path to images")
+	CurrentConfig.ContentStore = *flag.String("contentStore", "\\build\\todo\\content-store\\", "Path to content store")
+	CurrentConfig.FrontEndPath = *flag.String("frontEndPath", "\\build\\todo\\src\\front-end\\", "Path to front end")
+	CurrentConfig.ImagesPath = *flag.String("imagesPath", "\\build\\todo\\images\\", "Path to images")
 	CurrentConfig.Portnum = *flag.Int("portnum", 7000, "Port number")
 	CurrentConfig.SenderEmail = *flag.String("senderEmail", "veluvignesh027@gmail.com", "Sender email")
 	CurrentConfig.SenderEmailPassword = *flag.String("senderEmailPassword", "ofnainecktydvywf", "Sender email password")
-	CurrentConfig.ConfigPath = *flag.String("configPath", "\\CACHE_BASEDIR\\todo-app\\todo\\configs\\", "Path to config file")
+	CurrentConfig.ConfigPath = *flag.String("configPath", "\\build\\todo\\configs\\", "Path to config file")
 	CurrentConfig.SMTPHost = *flag.String("smtphost", "smtp.gmail.com", "smpt host url")
 	CurrentConfig.SMTPPort = *flag.String("smtpport", "587", "smpt host port number")
 	flag.Parse()

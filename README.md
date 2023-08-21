@@ -34,4 +34,13 @@ Installation instructions:
        5) Ping 🏹
                http://localhost:9000/**` to access the web server.
 ______________________________________________________________________________________________________________
+
+Run Following commands :
+
+docker build -t todowebapp .
+docker run -p 7000:7000 -tid todowebapp
+
+______________________________________________________________________________________________________________
 "Cheers!"
+
+
