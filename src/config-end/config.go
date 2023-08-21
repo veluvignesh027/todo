@@ -25,7 +25,7 @@ func SetConfigs() {
 	CurrentConfig.ContentStore = *flag.String("contentStore", "\\build\\todo\\content-store\\", "Path to content store")
 	CurrentConfig.FrontEndPath = *flag.String("frontEndPath", "\\build\\todo\\src\\front-end\\", "Path to front end")
 	CurrentConfig.ImagesPath = *flag.String("imagesPath", "\\build\\todo\\images\\", "Path to images")
-	CurrentConfig.Portnum = *flag.Int("portnum", 7000, "Port number")
+	CurrentConfig.Portnum = *flag.Int("portnum", 8000, "Port number")
 	CurrentConfig.SenderEmail = *flag.String("senderEmail", "veluvignesh027@gmail.com", "Sender email")
 	CurrentConfig.SenderEmailPassword = *flag.String("senderEmailPassword", "ofnainecktydvywf", "Sender email password")
 	CurrentConfig.ConfigPath = *flag.String("configPath", "\\build\\todo\\configs\\", "Path to config file")
@@ -34,16 +34,25 @@ func SetConfigs() {
 	flag.Parse()
 
 	if !checkFile(CurrentConfig.ContentStore) {
+		log.Println(CurrentConfig.ContentStore)
 		log.Println("Error config store.Exiting()")
+		os.Mkdir(CurrentConfig.ContentStore, 0644)
 	}
 	if !checkFile(CurrentConfig.ConfigPath) {
+		log.Println(CurrentConfig.ConfigPath)
 		log.Println("Error config config path.Exiting()")
+		os.Mkdir(CurrentConfig.ConfigPath, 0644)
 	}
 	if !checkFile(CurrentConfig.ImagesPath) {
+		log.Println(CurrentConfig.ImagesPath)
 		log.Println("Error finding config images path...")
+		os.Mkdir(CurrentConfig.ImagesPath, 0644)
 	}
 	if !checkFile(CurrentConfig.FrontEndPath) {
+		log.Println(CurrentConfig.FrontEndPath)
 		log.Println("Error config front end .Exiting()")
+		os.Mkdir(CurrentConfig.FrontEndPath, 0644)
+
 	}
 }
 func checkFile(str string) bool {
