@@ -1,6 +1,17 @@
 [
  {
-  "NAME": "vb",
-  "PASSWORD": "12345678"
+  "Username": "vb",
+  "Password": "Vignesh*0000",
+  "Email": "veluvignesh027@gmail.com"
+ },
+ {
+  "Username": "mrlucky0501",
+  "Password": "MrLucky@0501",
+  "Email": "veluvignesh027@gmail.com"
+ },
+ {
+  "Username": "hello",
+  "Password": "HelloWorld@01",
+  "Email": "veluvignesh027@gmail.com"
  }
 ]

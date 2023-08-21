@@ -5,6 +5,8 @@ import (
 	"errors"
 	"log"
 	"os"
+
+	configend "github.com/todo/src/config-end"
 )
 
 var allUsers []User
@@ -12,46 +14,33 @@ var allUsers []User
 type UserManager struct{}
 
 type User struct {
-	Name     string `json:"NAME"`
-	Password string `json:"PASSWORD"`
+	Username string
+	Password string
+	Email    string
 }
 
-func (u *UserManager) ValidateUserStruct(s string) (User, error) {
-	var temp User
-
-	ut := Util{}
-	uname := ut.GetValueForKey(s, "UserName")
-	upass := ut.GetValueForKey(s, "AddPassword")
-	ucpass := ut.GetValueForKey(s, "ConfirmPassword")
-
-	if upass != ucpass {
-		return temp, errors.New("password Didn't matched")
+// When the program starts, It has to take all pre-existing users into memory.
+// ReadUserFile will read all the users data into memory.
+func (u *UserManager) ReadUsersFile() error {
+	fileData, err := os.ReadFile(configend.CurrentConfig.ConfigPath + "users.json")
+	if err != nil {
+		log.Println("Error reading JSON file:", err)
+		return err
 	}
 
-	temp.Name = uname
-	temp.Password = upass
+	err = json.Unmarshal(fileData, &allUsers)
+	if err != nil {
+		log.Println(err)
+		return err
+	}
 
-	return temp, nil
+	log.Println("Users Updated in memory!")
+	return nil
 }
 
-func (u *UserManager) GetUserStruct(s string) (User, error) {
-	var temp User
-
-	ut := Util{}
-	uname := ut.GetValueForKey(s, "UserName")
-	upass := ut.GetValueForKey(s, "Password")
-
-	temp.Name = uname
-	temp.Password = upass
-
-	log.Println("Validating: user ", uname, " with password ", upass)
-
-	return temp, nil
-}
-
-func (u *UserManager) SaveUser(t User) error {
-
-	allUsers = append(allUsers, t)
+// Used to save the registered user in users.json file
+func (u *UserManager) SaveRegisteredUser(tmpUser User) error {
+	allUsers = append(allUsers, tmpUser)
 
 	jsonData, err := json.MarshalIndent(allUsers, "", " ")
 	if err != nil {
@@ -59,7 +48,7 @@ func (u *UserManager) SaveUser(t User) error {
 		return err
 	}
 
-	err = os.WriteFile("C:\\CACHE_BASEDIR\\todo-app\\todo\\configs\\users.json", jsonData, 0644)
+	err = os.WriteFile(configend.CurrentConfig.ConfigPath+"users.json", jsonData, 0644)
 	if err != nil {
 		log.Println("Error writing JSON file:", err)
 		return err
@@ -70,10 +59,11 @@ func (u *UserManager) SaveUser(t User) error {
 	return nil
 }
 
+// Used to Validate the user when trying to login by using users.json file
 func (u *UserManager) ValidateUser(t User) error {
 	var temp []User
 
-	fileData, err := os.ReadFile("C:\\CACHE_BASEDIR\\todo-app\\todo\\configs\\users.json")
+	fileData, err := os.ReadFile(configend.CurrentConfig.ConfigPath + "users.json")
 	if err != nil {
 		log.Println("Error reading JSON file:", err)
 		return err
@@ -86,8 +76,8 @@ func (u *UserManager) ValidateUser(t User) error {
 	}
 
 	for _, user := range temp {
-		if user.Name == t.Name && user.Password == t.Password {
-			log.Println("User Found!")
+		if user.Username == t.Username && user.Password == t.Password {
+			log.Println("User Found with valid Credintials!")
 			return nil
 		}
 	}
