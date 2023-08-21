@@ -33,33 +33,33 @@ func SetConfigs() {
 	CurrentConfig.SMTPPort = *flag.String("smtpport", "587", "smpt host port number")
 	flag.Parse()
 
-	// if !checkFile(CurrentConfig.ContentStore) {
-	// 	log.Println(CurrentConfig.ContentStore)
-	// 	log.Println("Error config store.Exiting()")
-	// 	os.Mkdir(CurrentConfig.ContentStore, 0644)
-	// }
-	// if !checkFile(CurrentConfig.ConfigPath) {
-	// 	log.Println(CurrentConfig.ConfigPath)
-	// 	log.Println("Error config config path.Exiting()")
-	// 	os.Mkdir(CurrentConfig.ConfigPath, 0644)
-	// }
-	// if !checkFile(CurrentConfig.ImagesPath) {
-	// 	log.Println(CurrentConfig.ImagesPath)
-	// 	log.Println("Error finding config images path...")
-	// 	os.Mkdir(CurrentConfig.ImagesPath, 0644)
-	// }
-	// if !checkFile(CurrentConfig.FrontEndPath) {
-	// 	log.Println(CurrentConfig.FrontEndPath)
-	// 	log.Println("Error config front end .Exiting()")
-	// 	os.Mkdir(CurrentConfig.FrontEndPath, 0644)
+	if !checkFile(CurrentConfig.ContentStore) {
+		log.Println(CurrentConfig.ContentStore)
+		log.Println("Error config store.Exiting()")
+		// os.Mkdir(CurrentConfig.ContentStore, 0644)
+	}
+	if !checkFile(CurrentConfig.ConfigPath) {
+		log.Println(CurrentConfig.ConfigPath)
+		log.Println("Error config config path.Exiting()")
+		// os.Mkdir(CurrentConfig.ConfigPath, 0644)
+	}
+	if !checkFile(CurrentConfig.ImagesPath) {
+		log.Println(CurrentConfig.ImagesPath)
+		log.Println("Error finding config images path...")
+		// os.Mkdir(CurrentConfig.ImagesPath, 0644)
+	}
+	if !checkFile(CurrentConfig.FrontEndPath) {
+		log.Println(CurrentConfig.FrontEndPath)
+		log.Println("Error config front end .Exiting()")
+		// os.Mkdir(CurrentConfig.FrontEndPath, 0644)
 
-	// }
+	}
 }
 
-//	func checkFile(str string) bool {
-//		_, err := os.Stat(str)
-//		return err == nil
-//	}
+func checkFile(str string) bool {
+	_, err := os.Stat(str)
+	return err == nil
+}
 func PrintConfigs() {
 	log.Println("Config Path : ", CurrentConfig.ConfigPath)
 	log.Println("Content Store Path : ", CurrentConfig.ContentStore)
