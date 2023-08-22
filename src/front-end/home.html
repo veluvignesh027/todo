@@ -92,7 +92,7 @@
 <body>
     <div class="container">
         <div class="section">
-            <h2>Create New To-DO</h2>
+            <h2>Create New To-Do</h2>
             <form class="tab-form" action="/tasks/createtask" method="post">
                 <div class="task-form">
                     <input type="text" name="task" placeholder="Task" required>
@@ -102,18 +102,40 @@
                 <br>
                 <button class="tab-button">Create Task</button>
             </form>
+            <form class="logout-button" action="/logout" method="post"><br>
+                <button class="logout" name="logout">LogOut</button>
+            </form>
+            <div id="create-task-response"></div> <!-- Response message will be displayed here -->
         </div>
         <div class="section">
-            <h2>All TO-Do's</h2>
+            <h2>All To-Do's</h2>
             <div class="view-tasks">
                 <ul class="task-list">
-                    <li>Task 1 - Date: 2023-08-22 Time: 14:00</li>
-                    <li>Task 2 - Date: 2023-08-23 Time: 10:30</li>
-                    <!-- Add more tasks here -->
+                    <div id="view-tasks-response"></div> <!-- Response message will be displayed here -->
                 </ul>
             </div>
         </div>
     </div>
+
+    <script>
+        const createTaskResponseElement = document.getElementById("create-task-response");
+        const viewTasksResponseElement = document.getElementById("view-tasks-response");
+
+        function updateCreateTaskResponse(message) {
+            createTaskResponseElement.textContent = message;
+        }
+
+        function updateViewTasksResponse(message) {
+            viewTasksResponseElement.textContent = message;
+        }
+
+        // Example usage:
+        // After a successful form submission to create a task
+        // updateCreateTaskResponse("Task created successfully!");
+
+        // After fetching and displaying tasks from the server
+        // updateViewTasksResponse("Here are your tasks:");
+    </script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@ func SendMailToDest(mailId string, data string) {
 	smtpHost := configend.CurrentConfig.SMTPHost
 	smtpPort := configend.CurrentConfig.SMTPPort
 
-	subject := "HTML Email Test"
+	subject := "TO-DO Email OTP Verification"
 	body := `<html>
                 <body>
                     <h1>The One-Time-Password for registering User in To-Do</h1>
