@@ -2,6 +2,7 @@ package configend
 
 import (
 	"encoding/json"
+	"errors"
 	"flag"
 	"log"
 	"os"
@@ -21,14 +22,29 @@ type ConfigStruct struct {
 
 var CurrentConfig ConfigStruct
 
-func SetConfigs() {
+func GetConfigParams(cfPath string) error {
+	fp, err := os.ReadFile(cfPath + "configurations.json")
+	if err != nil || len(fp) < 1 {
+		log.Println("Config File Not Found!")
+		return errors.New("config Not Found")
+	}
+
+	err = json.Unmarshal(fp, &CurrentConfig)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func SetConfigs(cfPath string) {
 	CurrentConfig.ContentStore = *flag.String("contentStore", "\\CACHE_BASEDIR\\todo-app\\todo\\content-store\\", "Path to content store")
 	CurrentConfig.FrontEndPath = *flag.String("frontEndPath", "\\CACHE_BASEDIR\\todo-app\\todo\\src\\front-end\\", "Path to front end")
 	CurrentConfig.ImagesPath = *flag.String("imagesPath", "\\CACHE_BASEDIR\\todo-app\\todo\\images\\", "Path to images")
 	CurrentConfig.Portnum = *flag.Int("portnum", 8000, "Port number")
-	CurrentConfig.SenderEmail = *flag.String("senderEmail", "xxxx@gmail.com", "Sender email")
-	CurrentConfig.SenderEmailPassword = *flag.String("senderEmailPassword", "xxx", "Sender email password")
-	CurrentConfig.ConfigPath = *flag.String("configPath", "\\CACHE_BASEDIR\\todo-app\\todo\\configs", "Path to config file")
+	CurrentConfig.SenderEmail = *flag.String("senderEmail", "xxx@gmail.com", "Sender email")
+	CurrentConfig.SenderEmailPassword = *flag.String("senderEmailPassword", "", "Sender email password")
+	CurrentConfig.ConfigPath = cfPath
 	CurrentConfig.SMTPHost = *flag.String("smtphost", "smtp.gmail.com", "smpt host url")
 	CurrentConfig.SMTPPort = *flag.String("smtpport", "587", "smpt host port number")
 	flag.Parse()
@@ -73,7 +89,7 @@ func PrintConfigs() {
 
 	log.Println("Initialized all configurations.!")
 
-	fp, err := os.OpenFile(CurrentConfig.ConfigPath+"configurations.json", os.O_CREATE, 0644)
+	fp, err := os.OpenFile(CurrentConfig.ConfigPath+"configurations.json", os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		log.Println(err)
 		os.Exit(-2)
