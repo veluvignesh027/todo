@@ -1,4 +1,4 @@
-module github.com/veluvignesh027/todo
+module github.com/todo
 
 go 1.20
 
